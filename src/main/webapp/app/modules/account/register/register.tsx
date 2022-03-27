@@ -19,7 +19,7 @@ export const RegisterPage = () => {
   );
 
   const handleValidSubmit = ({ username, email, firstPassword }) => {
-    dispatch(handleRegister({ login: username, email, password: firstPassword, langKey: 'en' }));
+    dispatch(handleRegister({ login: username, email, password: firstPassword, langKey: 'vi' }));
   };
 
   const updatePassword = event => setPassword(event.target.value);
