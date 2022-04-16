@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,21 +17,24 @@ public class OrderDetail extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long orderDetailId;
+    private long id;
 
     @Column(name = "name")
     private Customer customer;
 
     @OneToMany
-    @JoinColumn(name = "orderItemId")
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private List<OrderItem> orderItems;
 
-    public long getOrderDetailId() {
-        return orderDetailId;
+    @OneToOne(mappedBy = "orderDetail")
+    private Order order;
+
+    public long getId() {
+        return id;
     }
 
-    public OrderDetail setOrderDetailId(long orderDetailId) {
-        this.orderDetailId = orderDetailId;
+    public OrderDetail setId(long orderDetailId) {
+        this.id = orderDetailId;
         return this;
     }
 
@@ -49,6 +53,15 @@ public class OrderDetail extends BaseEntity {
 
     public OrderDetail setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+        return this;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public OrderDetail setOrder(Order order) {
+        this.order = order;
         return this;
     }
 }

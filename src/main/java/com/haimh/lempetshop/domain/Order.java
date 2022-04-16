@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_table")
 public class Order extends BaseEntity {
 
     @Id
@@ -22,15 +22,18 @@ public class Order extends BaseEntity {
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private OrderDetail orderDetail;
+
+    @Column(name = "note")
+    private String note;
 
     public long getId() {
         return id;
     }
 
-    public Order setId(long id) {
-        this.id = id;
+    public Order setOrrderId(long orrderId) {
+        this.id = orrderId;
         return this;
     }
 
@@ -49,6 +52,20 @@ public class Order extends BaseEntity {
 
     public Order setOrderDetail(OrderDetail orderDetail) {
         this.orderDetail = orderDetail;
+        return this;
+    }
+
+    public Order setId(long id) {
+        this.id = id;
+        return this;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Order setNote(String note) {
+        this.note = note;
         return this;
     }
 }

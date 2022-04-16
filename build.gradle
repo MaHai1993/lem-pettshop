@@ -273,6 +273,9 @@ dependencies {
     testRuntimeOnly "com.tngtech.archunit:archunit-junit5-engine:${archunitJunit5Version}"
     testImplementation "com.h2database:h2"
     developmentOnly "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
+
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 
