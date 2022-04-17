@@ -1,51 +1,30 @@
-package com.haimh.lempetshop.domain;
+package com.haimh.lempetshop.service.dto;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import com.haimh.lempetshop.domain.BaseEntity;
 
-@Entity
-@Table(name = "customer")
-public class Customer extends BaseEntity implements Serializable {
+public class CustomerDTO extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "note")
     private String note;
 
-    @Column(name = "user_type")
     private String userType;
 
-    @Column(name = "buy_time")
     private Integer buyTime;
 
     public long getId() {
         return id;
     }
 
-    public Customer setId(long id) {
+    public CustomerDTO setId(long id) {
         this.id = id;
         return this;
     }
@@ -54,7 +33,7 @@ public class Customer extends BaseEntity implements Serializable {
         return name;
     }
 
-    public Customer setName(String name) {
+    public CustomerDTO setName(String name) {
         this.name = name;
         return this;
     }
@@ -63,7 +42,7 @@ public class Customer extends BaseEntity implements Serializable {
         return email;
     }
 
-    public Customer setEmail(String email) {
+    public CustomerDTO setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -72,7 +51,7 @@ public class Customer extends BaseEntity implements Serializable {
         return phoneNumber;
     }
 
-    public Customer setPhoneNumber(String phoneNumber) {
+    public CustomerDTO setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
@@ -81,7 +60,7 @@ public class Customer extends BaseEntity implements Serializable {
         return address;
     }
 
-    public Customer setAddress(String address) {
+    public CustomerDTO setAddress(String address) {
         this.address = address;
         return this;
     }
@@ -90,7 +69,7 @@ public class Customer extends BaseEntity implements Serializable {
         return note;
     }
 
-    public Customer setNote(String note) {
+    public CustomerDTO setNote(String note) {
         this.note = note;
         return this;
     }
@@ -99,7 +78,7 @@ public class Customer extends BaseEntity implements Serializable {
         return userType;
     }
 
-    public Customer setUserType(String userType) {
+    public CustomerDTO setUserType(String userType) {
         this.userType = userType;
         return this;
     }
@@ -108,7 +87,7 @@ public class Customer extends BaseEntity implements Serializable {
         return buyTime;
     }
 
-    public Customer setBuyTime(Integer buyTime) {
+    public CustomerDTO setBuyTime(Integer buyTime) {
         this.buyTime = buyTime;
         return this;
     }

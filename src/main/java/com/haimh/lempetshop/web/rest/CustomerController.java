@@ -1,8 +1,8 @@
 package com.haimh.lempetshop.web.rest;
 
 import com.haimh.lempetshop.security.AuthoritiesConstants;
-import com.haimh.lempetshop.service.ProductService;
-import com.haimh.lempetshop.service.dto.ProductDTO;
+import com.haimh.lempetshop.service.CustomerService;
+import com.haimh.lempetshop.service.dto.CustomerDTO;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -33,63 +33,63 @@ import tech.jhipster.web.util.ResponseUtil;
  * Controller to authenticate users.
  */
 @RestController
-@RequestMapping("/api/product")
-public class ProductController {
+@RequestMapping("/api/customer")
+public class CustomerController {
 
-    private final Logger log = LoggerFactory.getLogger(ProductController.class);
+    private final Logger log = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    private ProductService productService;
+    private CustomerService customerService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    @GetMapping(value = "/get-all-product")
+    @GetMapping(value = "/get-all-customer")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<List<ProductDTO>> getAllProduct(Pageable pageable) {
-        Page<ProductDTO> orders = productService.getAllProduct(pageable);
+    public ResponseEntity<List<CustomerDTO>> getAllCustomer(Pageable pageable) {
+        Page<CustomerDTO> orders = customerService.getAllProduct(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), orders);
         return new ResponseEntity<>(orders.getContent(), headers, HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
-        ProductDTO order = productService.createProduct(productDTO);
+    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+        CustomerDTO order = customerService.createProduct(customerDTO);
         return ResponseEntity.ok(order);
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<ProductDTO> updateProduct(@Valid @RequestBody ProductDTO productDTO) {
-        log.debug("REST request to update Product : {}", productDTO);
-        ProductDTO updatedUser = productService.updateProduct(productDTO);
+    public ResponseEntity<CustomerDTO> updateCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+        log.debug("REST request to update Product : {}", customerDTO);
+        CustomerDTO updatedUser = customerService.updateProduct(customerDTO);
 
         return ResponseUtil.wrapOrNotFound(
             Optional.of(updatedUser),
             HeaderUtil.createAlert(
                 applicationName,
-                "A user is updated with identifier " + productDTO.getId(),
-                String.valueOf(productDTO.getId())
+                "A user is updated with identifier " + customerDTO.getId(),
+                String.valueOf(customerDTO.getId())
             )
         );
     }
 
-    @GetMapping("/find-product/{id}")
+    @GetMapping("/find-customer/{id}")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<ProductDTO> getProduct(@PathVariable Long id) {
-        log.debug("REST request to get ProductDTO : {}", id);
-        return ResponseUtil.wrapOrNotFound(productService.findOneById(id));
+    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable Long id) {
+        log.debug("REST request to get CustomerDTO : {}", id);
+        return ResponseUtil.wrapOrNotFound(customerService.findOneById(id));
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        log.debug("REST request to delete ProductDTO: {}", id);
-        productService.deleteProduct(id);
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        log.debug("REST request to delete CustomerDTO: {}", id);
+        customerService.deleteProduct(id);
         return ResponseEntity
             .noContent()
-            .headers(HeaderUtil.createAlert(applicationName, "A product is deleted with identifier " + id, String.valueOf(id)))
+            .headers(HeaderUtil.createAlert(applicationName, "A customer is deleted with identifier " + id, String.valueOf(id)))
             .build();
     }
 }
