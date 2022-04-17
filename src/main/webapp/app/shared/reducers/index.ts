@@ -6,6 +6,7 @@ import applicationProfile from './application-profile';
 import administration from 'app/modules/administration/administration.reducer';
 import userManagement from 'app/modules/administration/user-management/user-management.reducer';
 import orderManagement from 'app/modules/administration/order-management/order-management.reducer';
+import productManagement from 'app/modules/administration/product-management/product-management.reducer';
 import register from 'app/modules/account/register/register.reducer';
 import activate from 'app/modules/account/activate/activate.reducer';
 import password from 'app/modules/account/password/password.reducer';
@@ -19,6 +20,7 @@ const rootReducer = {
   administration,
   userManagement,
   orderManagement,
+  productManagement,
   register,
   activate,
   passwordReset,

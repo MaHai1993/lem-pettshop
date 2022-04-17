@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "price")
+//@Entity
+//@Table(name = "price")
 public class Price extends BaseEntity {
 
     @Id

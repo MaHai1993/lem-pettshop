@@ -19,7 +19,7 @@ const getAllOrder = 'api/order/get-all-order';
 const findOrder = 'api/order/find-order';
 const creatOrder = 'api/order/create';
 const updateOrderById = 'api/order/update';
-const deleteOrderById = 'api/order/';
+const deleteOrderById = 'api/order';
 
 // Async Actions
 export const getOrders = createAsyncThunk('orderManagement/fetch_orders', async ({ page, size, sort }: IQueryParams) => {

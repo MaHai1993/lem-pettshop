@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 public class BaseEntity {
 
     @Column(name = "create_by")
-    private String createBy;
+    private String createdBy;
 
     @Column(name = "create_date")
     private Date createdDate;
@@ -61,12 +61,12 @@ public class BaseEntity {
         return this;
     }
 
-    public String getCreateBy() {
-        return createBy;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public BaseEntity setCreateBy(String createBy) {
-        this.createBy = createBy;
+    public BaseEntity setCreatedBy(String createBy) {
+        this.createdBy = createBy;
         return this;
     }
 

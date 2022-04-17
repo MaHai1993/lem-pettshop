@@ -1,6 +1,5 @@
 package com.haimh.lempetshop.domain;
 
-import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.util.ObjectUtils;
@@ -38,11 +38,11 @@ public class Product extends BaseEntity {
     @Column(name = "note")
     private String note;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private Price price;
+    @Column(name = "price")
+    private double price;
 
-    private double totalPrice;
+    @Transient
+    private Double totalPrice;
 
     public long getId() {
         return id;
@@ -89,18 +89,23 @@ public class Product extends BaseEntity {
         return this;
     }
 
-    public Price getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public Product setPrice(Price price) {
+    public Product setPrice(double price) {
         this.price = price;
+        return this;
+    }
+
+    public Product setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
         return this;
     }
 
     public double getTotalPrice() {
         if (!ObjectUtils.isEmpty(this.getPrice())) {
-            return this.getPrice().getPrice() * quantity;
+            return this.getPrice() * quantity;
         }
         return 0;
     }
