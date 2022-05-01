@@ -15,9 +15,9 @@ public class OrderItemDTO extends BaseEntity {
 
     private long orderItemId;
 
-    private OrderDetail orderDetail;
-
     private long productId;
+
+    private String productName;
 
     private long quantity;
 
@@ -29,15 +29,6 @@ public class OrderItemDTO extends BaseEntity {
 
     public OrderItemDTO setOrderItemId(long orderItemId) {
         this.orderItemId = orderItemId;
-        return this;
-    }
-
-    public OrderDetail getOrderDetail() {
-        return orderDetail;
-    }
-
-    public OrderItemDTO setOrderDetail(OrderDetail orderDetail) {
-        this.orderDetail = orderDetail;
         return this;
     }
 
@@ -65,6 +56,15 @@ public class OrderItemDTO extends BaseEntity {
 
     public OrderItemDTO setNotes(long notes) {
         this.notes = notes;
+        return this;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public OrderItemDTO setProductName(String productName) {
+        this.productName = productName;
         return this;
     }
 }

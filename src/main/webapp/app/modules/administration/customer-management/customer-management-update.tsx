@@ -135,7 +135,7 @@ export const CustomerManagementUpdate = (props: RouteComponentProps<{ id: string
               />
               <ValidatedField
                 type="text"
-                name="userType"
+                name="customerType"
                 placeholder={'This field for separate type of customer, can leave it empty for future feature'}
                 label="Customer type"
                 // validate={{

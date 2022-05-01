@@ -5,8 +5,9 @@ export interface ICustomer {
   phoneNumber?: string;
   address?: string;
   note?: string;
-  userType?: string;
+  customerType?: string;
   buyTime?: number;
+  totalBuy?: string;
   createdBy?: string;
   lastModifiedBy?: string;
   createdDate?: Date | null;
@@ -21,9 +22,10 @@ export const defaultValue: Readonly<ICustomer> = {
   email: '',
   phoneNumber: '',
   buyTime: 0,
+  totalBuy: '0',
   lastModifiedBy: '',
   createdBy: '',
-  userType: '',
+  customerType: '',
   createdDate: null,
   updatedDate: null,
   lastModifiedDate: null,

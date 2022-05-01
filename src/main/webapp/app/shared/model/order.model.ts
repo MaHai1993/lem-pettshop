@@ -2,7 +2,8 @@ export interface IOrder {
   id?: any;
   name?: string;
   note?: string;
-  items?: any[];
+  customer?: any;
+  orderDetail?: any;
   customerName?: string;
   createdBy?: string;
   lastModifiedBy?: string;
@@ -16,9 +17,10 @@ export const defaultValue: Readonly<IOrder> = {
   name: '',
   note: '',
   customerName: '',
+  orderDetail: null,
   lastModifiedBy: '',
   createdBy: '',
-  items: [],
+  customer: '',
   createdDate: null,
   updatedDate: null,
   lastModifiedDate: null,

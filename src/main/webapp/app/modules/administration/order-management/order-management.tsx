@@ -108,6 +108,10 @@ export const OrderManagement = (props: RouteComponentProps<any>) => {
               Order name
               <FontAwesomeIcon icon="sort" />
             </th>
+            <th className="hand">
+              Customer name
+              <FontAwesomeIcon icon="sort" />
+            </th>
             <th className="hand" onClick={sort('note')}>
               Order note
               <FontAwesomeIcon icon="sort" />
@@ -137,7 +141,7 @@ export const OrderManagement = (props: RouteComponentProps<any>) => {
                 </Button>
               </td>
               <td>{order.name}</td>
-              {/*<td>{order.customerName}</td>*/}
+              <td>{order.customer.name}</td>
               <td>{order.note}</td>
               {/*<td>*/}
               {/*{user.authorities*/}

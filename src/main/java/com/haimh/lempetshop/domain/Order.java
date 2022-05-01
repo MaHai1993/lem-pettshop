@@ -16,14 +16,19 @@ public class Order extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     private long id;
 
     @Column(name = "name")
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "order_detail_id", referencedColumnName = "order_detail_id", insertable = false, updatable = false)
     private OrderDetail orderDetail;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
+    private Customer customer;
 
     @Column(name = "note")
     private String note;
@@ -66,6 +71,15 @@ public class Order extends BaseEntity {
 
     public Order setNote(String note) {
         this.note = note;
+        return this;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Order setCustomer(Customer customer) {
+        this.customer = customer;
         return this;
     }
 }

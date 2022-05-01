@@ -1,6 +1,7 @@
 package com.haimh.lempetshop.service.dto;
 
 import com.haimh.lempetshop.domain.BaseEntity;
+import java.util.List;
 
 public class CustomerDTO extends BaseEntity {
 
@@ -16,9 +17,22 @@ public class CustomerDTO extends BaseEntity {
 
     private String note;
 
-    private String userType;
+    private String customerType;
 
     private Integer buyTime;
+
+    private String totalBuy;
+
+    private List<OrderDetailDTO> orderDetails;
+
+    public String getTotalBuy() {
+        return totalBuy;
+    }
+
+    public CustomerDTO setTotalBuy(String totalBuy) {
+        this.totalBuy = totalBuy;
+        return this;
+    }
 
     public long getId() {
         return id;
@@ -74,12 +88,12 @@ public class CustomerDTO extends BaseEntity {
         return this;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getCustomerType() {
+        return customerType;
     }
 
-    public CustomerDTO setUserType(String userType) {
-        this.userType = userType;
+    public CustomerDTO setCustomerType(String customerType) {
+        this.customerType = customerType;
         return this;
     }
 
@@ -89,6 +103,15 @@ public class CustomerDTO extends BaseEntity {
 
     public CustomerDTO setBuyTime(Integer buyTime) {
         this.buyTime = buyTime;
+        return this;
+    }
+
+    public List<OrderDetailDTO> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public CustomerDTO setOrderDetails(List<OrderDetailDTO> orderDetails) {
+        this.orderDetails = orderDetails;
         return this;
     }
 }

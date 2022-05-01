@@ -2,9 +2,14 @@ package com.haimh.lempetshop.service;
 
 import com.haimh.lempetshop.domain.Customer;
 import com.haimh.lempetshop.repository.CustomerRepository;
+import com.haimh.lempetshop.repository.OrderDetailRepository;
+import com.haimh.lempetshop.repository.OrderItemRepository;
+import com.haimh.lempetshop.repository.OrderRepository;
 import com.haimh.lempetshop.security.SecurityUtils;
 import com.haimh.lempetshop.service.dto.CustomerDTO;
+import java.text.NumberFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -24,6 +29,15 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Transactional(readOnly = true)
@@ -33,6 +47,14 @@ public class CustomerService {
 
     @Transactional(readOnly = true)
     public Optional<CustomerDTO> findOneById(Long id) {
+        CustomerDTO customer = customerRepository.findById(id).map(e -> modelMapper.map(e, CustomerDTO.class)).get();
+        int numberBuyTimes = orderRepository.countByCustomerId(customer.getId());
+        customer.setBuyTime(numberBuyTimes);
+        Double totalBuy = orderItemRepository.sumTotalByCustomerId(customer.getId());
+        if (totalBuy != null) {
+            String formattedCurrency = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(totalBuy);
+            customer.setTotalBuy(formattedCurrency);
+        }
         return customerRepository.findById(id).map(e -> modelMapper.map(e, CustomerDTO.class));
     }
 

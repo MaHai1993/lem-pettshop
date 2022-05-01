@@ -4,6 +4,7 @@ import com.haimh.lempetshop.domain.Order;
 import com.haimh.lempetshop.security.AuthoritiesConstants;
 import com.haimh.lempetshop.service.OrderService;
 import com.haimh.lempetshop.service.dto.OrderDTO;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -47,8 +48,8 @@ public class OrderController {
 
     @GetMapping(value = "/get-all-order")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<List<Order>> getAllOrder(Pageable pageable) {
-        Page<Order> orders = orderService.getAllOrder(pageable);
+    public ResponseEntity<List<OrderDTO>> getAllOrder(Pageable pageable) {
+        Page<OrderDTO> orders = orderService.getAllOrder(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), orders);
         return new ResponseEntity<>(orders.getContent(), headers, HttpStatus.OK);
     }
@@ -62,15 +63,15 @@ public class OrderController {
 
     @PutMapping("/update")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<Order> updateUser(@Valid @RequestBody OrderDTO orderDTO) {
-        log.debug("REST request to update User : {}", orderDTO);
-        Order updatedUser = orderService.updateOrder(orderDTO);
+    public ResponseEntity<Order> updateOrder(@Valid @RequestBody OrderDTO orderDTO) {
+        log.debug("REST request to update Order : {}", orderDTO);
+        Order updatedOrder = orderService.updateOrder(orderDTO);
 
         return ResponseUtil.wrapOrNotFound(
-            Optional.of(updatedUser),
+            Optional.of(updatedOrder),
             HeaderUtil.createAlert(
                 applicationName,
-                "A user is updated with identifier " + orderDTO.getId(),
+                "A Order is updated with identifier " + orderDTO.getId(),
                 String.valueOf(orderDTO.getId())
             )
         );
@@ -78,14 +79,14 @@ public class OrderController {
 
     @GetMapping("/find-order/{id}")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<Order> getUser(@PathVariable Long id) {
+    public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) throws Exception {
         log.debug("REST request to get Order : {}", id);
         return ResponseUtil.wrapOrNotFound(orderService.findOneById(id));
     }
 
     @DeleteMapping("/order/{id}")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         log.debug("REST request to delete Order: {}", id);
         orderService.deleteOrder(id);
         return ResponseEntity

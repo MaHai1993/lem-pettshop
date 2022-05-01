@@ -104,28 +104,28 @@ export const OrderManagementUpdate = (props: RouteComponentProps<{ id: string }>
                 }}
               />
               <FormText>This field cannot be longer than 50 characters.</FormText>
-              <ValidatedField
-                name="email"
-                label="Email"
-                placeholder={'Your email'}
-                type="email"
-                validate={{
-                  required: {
-                    value: true,
-                    message: 'Your email is required.',
-                  },
-                  minLength: {
-                    value: 5,
-                    message: 'Your email is required to be at least 5 characters.',
-                  },
-                  maxLength: {
-                    value: 254,
-                    message: 'Your email cannot be longer than 50 characters.',
-                  },
-                  validate: v => isEmail(v) || 'Your email is invalid.',
-                }}
-              />
-              <ValidatedField type="checkbox" name="activated" check value={true} disabled={!order.id} label="Activated" />
+              {/*<ValidatedField*/}
+              {/*  name="email"*/}
+              {/*  label="Email"*/}
+              {/*  placeholder={'Your email'}*/}
+              {/*  type="email"*/}
+              {/*  validate={{*/}
+              {/*    required: {*/}
+              {/*      value: true,*/}
+              {/*      message: 'Your email is required.',*/}
+              {/*    },*/}
+              {/*    minLength: {*/}
+              {/*      value: 5,*/}
+              {/*      message: 'Your email is required to be at least 5 characters.',*/}
+              {/*    },*/}
+              {/*    maxLength: {*/}
+              {/*      value: 254,*/}
+              {/*      message: 'Your email cannot be longer than 50 characters.',*/}
+              {/*    },*/}
+              {/*    validate: v => isEmail(v) || 'Your email is invalid.',*/}
+              {/*  }}*/}
+              {/*/>*/}
+              {/*<ValidatedField type="checkbox" name="activated" check value={true} disabled={!order.id} label="Activated" />*/}
               {/*<ValidatedField type="select" name="authorities" multiple label="Profiles">*/}
               {/*  {authorities.map(role => (*/}
               {/*    <option value={role} key={role}>*/}

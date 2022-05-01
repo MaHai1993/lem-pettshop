@@ -94,31 +94,35 @@ export const CustomerManagement = (props: RouteComponentProps<any>) => {
               <FontAwesomeIcon icon="sort" />
             </th>
             <th className="hand" onClick={sort('name')}>
-              Customer name
+              Name
               <FontAwesomeIcon icon="sort" />
             </th>
             <th className="hand" onClick={sort('email')}>
-              Customer email
+              Email
               <FontAwesomeIcon icon="sort" />
             </th>
             <th className="hand" onClick={sort('address')}>
-              Customer address
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th className="hand" onClick={sort('phoneNumber')}>
-              Customer phone
+              Address
               <FontAwesomeIcon icon="sort" />
             </th>
             <th className="hand">
-              Customer note
+              Phone number
               <FontAwesomeIcon icon="sort" />
             </th>
             <th className="hand">
-              Customer Types
+              Note
+              <FontAwesomeIcon icon="sort" />
+            </th>
+            <th className="hand">
+              Types
               <FontAwesomeIcon icon="sort" />
             </th>
             <th className="hand" onClick={sort('buyTime')}>
-              Customer buy time
+              Buy time
+              <FontAwesomeIcon icon="sort" />
+            </th>
+            <th className="hand" onClick={sort('createdBy')}>
+              Created By
               <FontAwesomeIcon icon="sort" />
             </th>
             {/*<th>Profiles</th>*/}
@@ -126,14 +130,14 @@ export const CustomerManagement = (props: RouteComponentProps<any>) => {
               Created Date
               <FontAwesomeIcon icon="sort" />
             </th>
-            <th className="hand" onClick={sort('lastModifiedBy')}>
-              Last Modified By
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th id="modified-date-sort" className="hand" onClick={sort('lastModifiedDate')}>
-              Last Modified Date
-              <FontAwesomeIcon icon="sort" />
-            </th>
+            {/*<th className="hand" onClick={sort('lastModifiedBy')}>*/}
+            {/*  Last Modified By*/}
+            {/*  <FontAwesomeIcon icon="sort" />*/}
+            {/*</th>*/}
+            {/*<th id="modified-date-sort" className="hand" onClick={sort('lastModifiedDate')}>*/}
+            {/*  Last Modified Date*/}
+            {/*  <FontAwesomeIcon icon="sort" />*/}
+            {/*</th>*/}
             <th />
           </tr>
         </thead>
@@ -151,8 +155,9 @@ export const CustomerManagement = (props: RouteComponentProps<any>) => {
               <td>{customer.address}</td>
               <td>{customer.phoneNumber}</td>
               <td>{customer.note}</td>
-              <td>{customer.userType}</td>
+              <td>{customer.customerType}</td>
               <td>{customer.buyTime}</td>
+              <td>{customer.createdBy}</td>
               {/*<td>*/}
               {/*{user.authorities*/}
               {/*  ? user.authorities.map((authority, j) => (*/}
@@ -167,12 +172,12 @@ export const CustomerManagement = (props: RouteComponentProps<any>) => {
                   <TextFormat value={customer.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
                 ) : null}
               </td>
-              <td>{customer.lastModifiedBy}</td>
-              <td>
-                {customer.lastModifiedDate ? (
-                  <TextFormat value={customer.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
-                ) : null}
-              </td>
+              {/*<td>{customer.lastModifiedBy}</td>*/}
+              {/*<td>*/}
+              {/*  {customer.lastModifiedDate ? (*/}
+              {/*    <TextFormat value={customer.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />*/}
+              {/*  ) : null}*/}
+              {/*</td>*/}
               <td className="text-right">
                 <div className="btn-group flex-btn-group-container">
                   <Button tag={Link} to={`${match.url}/${customer.id}`} color="info" size="sm">

@@ -38,6 +38,10 @@ export const CustomerManagementDetail = (props: RouteComponentProps<{ id: string
           <dd>{customer.phoneNumber}</dd>
           <dt>Note</dt>
           <dd>{customer.note}</dd>
+          <dt>Buy times</dt>
+          <dd>{customer.buyTime}</dd>
+          <dt>Total money spent</dt>
+          <dd>{customer.totalBuy}</dd>
           <dt>Created By</dt>
           <dd>{customer.createdBy}</dd>
           <dt>Created Date</dt>

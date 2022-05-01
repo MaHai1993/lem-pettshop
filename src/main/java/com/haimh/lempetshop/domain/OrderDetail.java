@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -17,13 +18,15 @@ public class OrderDetail extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_detail_id")
     private long id;
 
-    @Column(name = "name")
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @OneToMany
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "order_item_id", insertable = false, updatable = false)
     private List<OrderItem> orderItems;
 
     @OneToOne(mappedBy = "orderDetail")

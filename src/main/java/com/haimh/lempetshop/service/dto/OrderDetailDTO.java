@@ -17,9 +17,9 @@ public class OrderDetailDTO extends BaseEntity {
 
     private long orderDetailId;
 
-    private Customer customer;
+    private CustomerDTO customer;
 
-    private List<OrderItem> orderItems;
+    private List<OrderItemDTO> orderItems;
 
     public long getOrderDetailId() {
         return orderDetailId;
@@ -30,20 +30,20 @@ public class OrderDetailDTO extends BaseEntity {
         return this;
     }
 
-    public Customer getCustomer() {
+    public CustomerDTO getCustomer() {
         return customer;
     }
 
-    public OrderDetailDTO setCustomer(Customer customer) {
+    public OrderDetailDTO setCustomer(CustomerDTO customer) {
         this.customer = customer;
         return this;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public List<OrderItemDTO> getOrderItems() {
         return orderItems;
     }
 
-    public OrderDetailDTO setOrderItems(List<OrderItem> orderItems) {
+    public OrderDetailDTO setOrderItems(List<OrderItemDTO> orderItems) {
         this.orderItems = orderItems;
         return this;
     }

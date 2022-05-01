@@ -7,13 +7,13 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class BaseEntity {
 
-    @Column(name = "create_by")
+    @Column(name = "created_by")
     private String createdBy;
 
-    @Column(name = "create_date")
+    @Column(name = "created_date")
     private Date createdDate;
 
-    @Column(name = "update_date")
+    @Column(name = "updated_date")
     private Date updateDate;
 
     @Column(name = "last_modified_date")

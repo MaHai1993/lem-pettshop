@@ -9,7 +9,9 @@ public class OrderDTO extends BaseEntity {
 
     private String name;
 
-    private OrderDetailDTO orderDetailDTO;
+    private OrderDetailDTO orderDetail;
+
+    private CustomerDTO customer;
 
     private Map<Long, Long> itemAndQuantity;
 
@@ -31,17 +33,26 @@ public class OrderDTO extends BaseEntity {
         return this;
     }
 
-    public OrderDetailDTO getOrderDetailDTO() {
-        return orderDetailDTO;
-    }
-
-    public OrderDTO setOrderDetailDTO(OrderDetailDTO orderDetailDTO) {
-        this.orderDetailDTO = orderDetailDTO;
+    public OrderDTO setItemAndQuantity(Map<Long, Long> itemAndQuantity) {
+        this.itemAndQuantity = itemAndQuantity;
         return this;
     }
 
-    public OrderDTO setItemAndQuantity(Map<Long, Long> itemAndQuantity) {
-        this.itemAndQuantity = itemAndQuantity;
+    public OrderDetailDTO getOrderDetail() {
+        return orderDetail;
+    }
+
+    public OrderDTO setOrderDetail(OrderDetailDTO orderDetail) {
+        this.orderDetail = orderDetail;
+        return this;
+    }
+
+    public CustomerDTO getCustomer() {
+        return customer;
+    }
+
+    public OrderDTO setCustomer(CustomerDTO customer) {
+        this.customer = customer;
         return this;
     }
 

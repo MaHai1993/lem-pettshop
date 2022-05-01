@@ -1,11 +1,14 @@
 package com.haimh.lempetshop.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,6 +20,7 @@ public class Customer extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
     private long id;
 
     @NotNull
@@ -35,11 +39,14 @@ public class Customer extends BaseEntity implements Serializable {
     @Column(name = "note")
     private String note;
 
-    @Column(name = "user_type")
-    private String userType;
+    @Column(name = "customer_type")
+    private String customerType;
 
     @Column(name = "buy_time")
     private Integer buyTime;
+
+    //    @OneToMany(mappedBy = "customer")
+    //    private List<OrderDetail> orderDetailList;
 
     public long getId() {
         return id;
@@ -95,12 +102,12 @@ public class Customer extends BaseEntity implements Serializable {
         return this;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getCustomerType() {
+        return customerType;
     }
 
-    public Customer setUserType(String userType) {
-        this.userType = userType;
+    public Customer setCustomerType(String customerType) {
+        this.customerType = customerType;
         return this;
     }
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Row, Badge } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
 import { TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -25,17 +25,33 @@ export const OrderManagementDetail = (props: RouteComponentProps<{ id: string }>
       </h2>
       <Row size="md">
         <dl className="jh-entity-details">
-          {/*<dt>Order</dt>*/}
-          {/*<dd>*/}
-          {/*  <span>{user.login}</span>&nbsp;*/}
-          {/*  {user.activated ? <Badge color="success">Activated</Badge> : <Badge color="danger">Deactivated</Badge>}*/}
-          {/*</dd>*/}
+          <dt>Customer Name</dt>
+          <dd>{order.customer.name}</dd>
           <dt>Note</dt>
           <dd>{order.note}</dd>
-          {/*<dt>Last Name</dt>*/}
-          {/*<dd>{user.lastName}</dd>*/}
-          {/*<dt>Email</dt>*/}
-          {/*<dd>{user.email}</dd>*/}
+          <dt>Order items</dt>
+          <dd>
+            <tbody>
+              {order.orderDetail.orderItems.map((items, i) => (
+                <tr id={order.name} key={`order-detail-${i}`}>
+                  <td>{items.productName}</td>
+                  <td>{items.quantity}</td>
+                  <td>{items.note}</td>
+                  <td>
+                    {items.createdDate ? (
+                      <TextFormat value={items.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
+                    ) : null}
+                  </td>
+                  <td>{items.lastModifiedBy}</td>
+                  <td>
+                    {items.lastModifiedDate ? (
+                      <TextFormat value={items.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
+                    ) : null}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </dd>
           <dt>Created By</dt>
           <dd>{order.createdBy}</dd>
           <dt>Created Date</dt>
@@ -48,18 +64,6 @@ export const OrderManagementDetail = (props: RouteComponentProps<{ id: string }>
               <TextFormat value={order.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
             ) : null}
           </dd>
-          <dt>Profiles</dt>
-          {/*<dd>*/}
-          {/*  <ul className="list-unstyled">*/}
-          {/*    {user.authorities*/}
-          {/*      ? user.authorities.map((authority, i) => (*/}
-          {/*          <li key={`user-auth-${i}`}>*/}
-          {/*            <Badge color="info">{authority}</Badge>*/}
-          {/*          </li>*/}
-          {/*        ))*/}
-          {/*      : null}*/}
-          {/*  </ul>*/}
-          {/*</dd>*/}
         </dl>
       </Row>
       <Button tag={Link} to="/admin/order-management" replace color="info">
