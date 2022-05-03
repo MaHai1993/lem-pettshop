@@ -1,15 +1,6 @@
 package com.haimh.lempetshop.service.dto;
 
 import com.haimh.lempetshop.domain.BaseEntity;
-import com.haimh.lempetshop.domain.OrderDetail;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 public class OrderItemDTO extends BaseEntity {
 
@@ -23,12 +14,34 @@ public class OrderItemDTO extends BaseEntity {
 
     private long notes;
 
+    private double totalPrice;
+
+    private double productPrice;
+
     public long getOrderItemId() {
         return orderItemId;
     }
 
     public OrderItemDTO setOrderItemId(long orderItemId) {
         this.orderItemId = orderItemId;
+        return this;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public OrderItemDTO setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+        return this;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public OrderItemDTO setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
         return this;
     }
 

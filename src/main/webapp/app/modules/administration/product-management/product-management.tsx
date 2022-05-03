@@ -3,6 +3,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Table, Row, Badge } from 'reactstrap';
 import { TextFormat, JhiPagination, JhiItemCount, getSortState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CurrencyFormat from 'react-currency-format';
 
 import { APP_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
@@ -73,6 +74,7 @@ export const ProductManagement = (props: RouteComponentProps<any>) => {
   const totalItems = useAppSelector(state => state.productManagement.totalItems);
   const loading = useAppSelector(state => state.productManagement.loading);
 
+  /* eslint-disable */
   return (
     <div>
       <h2 id="product-management-page-heading" data-cy="orderManagementPageHeading">
@@ -113,7 +115,6 @@ export const ProductManagement = (props: RouteComponentProps<any>) => {
               Total price
               <FontAwesomeIcon icon="sort" />
             </th>
-            {/*<th>Profiles</th>*/}
             <th className="hand" onClick={sort('createdDate')}>
               Created Date
               <FontAwesomeIcon icon="sort" />
@@ -138,20 +139,26 @@ export const ProductManagement = (props: RouteComponentProps<any>) => {
                 </Button>
               </td>
               <td>{product.name}</td>
-              {/*<td>{product.customerName}</td>*/}
               <td>{product.note}</td>
               <td>{product.quantity}</td>
-              <td>{product.price}</td>
-              <td>{product.totalPrice}</td>
-              {/*<td>*/}
-              {/*{user.authorities*/}
-              {/*  ? user.authorities.map((authority, j) => (*/}
-              {/*      <div key={`user-auth-${i}-${j}`}>*/}
-              {/*        <Badge color="info">{authority}</Badge>*/}
-              {/*      </div>*/}
-              {/*    ))*/}
-              {/*  : null}*/}
-              {/*</td>*/}
+              <td>
+                <CurrencyFormat
+                  value={product.price}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={'$'}
+                  renderText={value => <div>{value}</div>}
+                />
+              </td>
+              <td>
+                <CurrencyFormat
+                  value={product.totalPrice}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={'$'}
+                  renderText={value => <div>{value}</div>}
+                />
+              </td>
               <td>
                 {product.createdDate ? (
                   <TextFormat value={product.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />

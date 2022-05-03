@@ -1,13 +1,10 @@
 package com.haimh.lempetshop.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,14 +16,17 @@ public class OrderItem extends BaseEntity {
     @Column(name = "order_item_id")
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_detail_id")
+    //    @ManyToOne(cascade = CascadeType.ALL)
+    ////    @ManyToOne(fetch = FetchType.LAZY)
+    //    @JoinColumn(name = "order_detail_id")
     //    @JoinColumn(name = "order_detail_id", nullable = false, insertable = false, updatable = false)
-    private OrderDetail orderDetail;
+    private Long orderDetailId;
 
     private Long productId;
 
     private Long quantity;
+
+    private Double productPrice;
 
     private Long totalPrice;
 
@@ -41,12 +41,12 @@ public class OrderItem extends BaseEntity {
         return this;
     }
 
-    public OrderDetail getOrderDetail() {
-        return orderDetail;
+    public Long getOrderDetailId() {
+        return orderDetailId;
     }
 
-    public OrderItem setOrderDetail(OrderDetail orderDetail) {
-        this.orderDetail = orderDetail;
+    public OrderItem setOrderDetailId(Long orderDetailId) {
+        this.orderDetailId = orderDetailId;
         return this;
     }
 
@@ -93,6 +93,15 @@ public class OrderItem extends BaseEntity {
 
     public OrderItem setNotes(String notes) {
         this.notes = notes;
+        return this;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public OrderItem setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
         return this;
     }
 }

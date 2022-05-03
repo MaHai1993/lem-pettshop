@@ -13,6 +13,8 @@ public class OrderDTO extends BaseEntity {
 
     private CustomerDTO customer;
 
+    private String orderTotalPrice;
+
     private Map<Long, Long> itemAndQuantity;
 
     public long getId() {
@@ -58,5 +60,14 @@ public class OrderDTO extends BaseEntity {
 
     public Map<Long, Long> getItemAndQuantity() {
         return itemAndQuantity;
+    }
+
+    public String getOrderTotalPrice() {
+        return orderTotalPrice;
+    }
+
+    public OrderDTO setOrderTotalPrice(String orderTotalPrice) {
+        this.orderTotalPrice = orderTotalPrice;
+        return this;
     }
 }

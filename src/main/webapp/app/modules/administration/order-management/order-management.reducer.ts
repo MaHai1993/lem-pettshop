@@ -8,7 +8,6 @@ const initialState = {
   loading: false,
   errorMessage: null,
   orders: [] as ReadonlyArray<IOrder>,
-  // authorities: [] as any[],
   order: defaultValue,
   updating: false,
   updateSuccess: false,

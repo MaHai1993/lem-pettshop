@@ -52,6 +52,12 @@ public class ProductController {
         return new ResponseEntity<>(orders.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/get-all-product-without-paging")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    public ResponseEntity<List<ProductDTO>> getAllProduct() {
+        return new ResponseEntity<>(productService.getAllProductWithoutPaging(), HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {

@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
   errorMessage: null,
   products: [] as ReadonlyArray<IProduct>,
+  allProducts: [] as ReadonlyArray<IProduct>,
   // authorities: [] as any[],
   product: defaultValue,
   updating: false,
@@ -16,6 +17,7 @@ const initialState = {
 };
 
 const getAllOrder = 'api/product/get-all-product';
+const getAllProductWithoutPaging = 'api/product/get-all-product-without-paging';
 const findProduct = 'api/product/find-product';
 const creatProduct = 'api/product/create';
 const updateProductById = 'api/product/update';
@@ -25,6 +27,11 @@ const deleteProductById = 'api/product';
 export const getProducts = createAsyncThunk('productManagement/fetch_products', async ({ page, size, sort }: IQueryParams) => {
   const requestUrl = `${getAllOrder}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return axios.get<IProduct[]>(requestUrl);
+});
+
+// Async Actions
+export const getAllProduct = createAsyncThunk('productManagement/fetch_all_products', async () => {
+  return axios.get<IProduct[]>(getAllProductWithoutPaging);
 });
 
 // export const getUsersAsAdmin = createAsyncThunk('productManagement/fetch_users_as_admin', async ({ page, size, sort }: IQueryParams) => {
@@ -106,13 +113,17 @@ export const ProductManagementSlice = createSlice({
         state.products = action.payload.data;
         state.totalItems = parseInt(action.payload.headers['x-total-count'], 10);
       })
+      .addMatcher(isFulfilled(getAllProduct), (state, action) => {
+        state.loading = false;
+        state.allProducts = action.payload.data;
+      })
       .addMatcher(isFulfilled(createProduct, updateProduct), (state, action) => {
         state.updating = false;
         state.loading = false;
         state.updateSuccess = true;
         state.product = action.payload.data;
       })
-      .addMatcher(isPending(getProducts, getProduct), state => {
+      .addMatcher(isPending(getProducts, getProduct, getAllProduct), state => {
         state.errorMessage = null;
         state.updateSuccess = false;
         state.loading = true;
@@ -123,7 +134,7 @@ export const ProductManagementSlice = createSlice({
         state.updating = true;
       })
       // .addMatcher(isRejected(getOrders, getOrder, getRoles, createOrder, updateOrder, deleteProduct), (state, action) => {
-      .addMatcher(isRejected(getProducts, getProduct, createProduct, updateProduct, deleteProduct), (state, action) => {
+      .addMatcher(isRejected(getProducts, getAllProduct, getProduct, createProduct, updateProduct, deleteProduct), (state, action) => {
         state.loading = false;
         state.updating = false;
         state.updateSuccess = false;

@@ -5,7 +5,9 @@ import com.haimh.lempetshop.repository.ProductRepository;
 import com.haimh.lempetshop.security.SecurityUtils;
 import com.haimh.lempetshop.service.dto.ProductDTO;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,11 @@ public class ProductService {
     @Transactional(readOnly = true)
     public Page<ProductDTO> getAllProduct(Pageable pageable) {
         return productRepository.findAll(pageable).map(e -> modelMapper.map(e, ProductDTO.class));
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductDTO> getAllProductWithoutPaging() {
+        return productRepository.findAll().stream().map(e -> modelMapper.map(e, ProductDTO.class)).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

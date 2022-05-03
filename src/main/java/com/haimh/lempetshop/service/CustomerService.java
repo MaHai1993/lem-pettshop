@@ -7,6 +7,7 @@ import com.haimh.lempetshop.repository.OrderItemRepository;
 import com.haimh.lempetshop.repository.OrderRepository;
 import com.haimh.lempetshop.security.SecurityUtils;
 import com.haimh.lempetshop.service.dto.CustomerDTO;
+import com.haimh.lempetshop.utils.Utils;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -52,8 +53,7 @@ public class CustomerService {
         customer.setBuyTime(numberBuyTimes);
         Double totalBuy = orderItemRepository.sumTotalByCustomerId(customer.getId());
         if (totalBuy != null) {
-            String formattedCurrency = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(totalBuy);
-            customer.setTotalBuy(formattedCurrency);
+            customer.setTotalBuy(Utils.formatCurrency(totalBuy));
         }
         return customerRepository.findById(id).map(e -> modelMapper.map(e, CustomerDTO.class));
     }
