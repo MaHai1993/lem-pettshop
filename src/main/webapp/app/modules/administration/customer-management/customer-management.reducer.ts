@@ -8,12 +8,14 @@ const initialState = {
   loading: false,
   errorMessage: null,
   customers: [] as ReadonlyArray<ICustomer>,
+  allCustomers: [] as ReadonlyArray<ICustomer>,
   customer: defaultValue,
   updating: false,
   updateSuccess: false,
   totalItems: 0,
 };
 
+const getAllCustomerWithoutPaging = 'api/customer/get-all-customer-without-paging';
 const getAllOrder = 'api/customer/get-all-customer';
 const findCustomer = 'api/customer/find-customer';
 const creatCustomer = 'api/customer/create';
@@ -24,6 +26,11 @@ const deleteCustomerById = 'api/customer';
 export const getCustomers = createAsyncThunk('customerManagement/fetch_customers', async ({ page, size, sort }: IQueryParams) => {
   const requestUrl = `${getAllOrder}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return axios.get<ICustomer[]>(requestUrl);
+});
+
+// Async Actions
+export const getAllCustomer = createAsyncThunk('customerManagement/fetch_all_customers', async () => {
+  return axios.get<ICustomer[]>(getAllCustomerWithoutPaging);
 });
 
 // export const getUsersAsAdmin = createAsyncThunk('customerManagement/fetch_users_as_admin', async ({ page, size, sort }: IQueryParams) => {
@@ -111,23 +118,30 @@ export const CustomerManagementSlice = createSlice({
         state.updateSuccess = true;
         state.customer = action.payload.data;
       })
+      .addMatcher(isFulfilled(getAllCustomer), (state, action) => {
+        state.loading = false;
+        state.allCustomers = action.payload.data;
+      })
       .addMatcher(isPending(getCustomers, getCustomer), state => {
         state.errorMessage = null;
         state.updateSuccess = false;
         state.loading = true;
       })
-      .addMatcher(isPending(createCustomer, updateCustomer, deleteCustomer), state => {
+      .addMatcher(isPending(createCustomer, updateCustomer, deleteCustomer, getAllCustomer), state => {
         state.errorMessage = null;
         state.updateSuccess = false;
         state.updating = true;
       })
       // .addMatcher(isRejected(getOrders, getOrder, getRoles, createOrder, updateOrder, deleteCustomer), (state, action) => {
-      .addMatcher(isRejected(getCustomers, getCustomer, createCustomer, updateCustomer, deleteCustomer), (state, action) => {
-        state.loading = false;
-        state.updating = false;
-        state.updateSuccess = false;
-        state.errorMessage = action.error.message;
-      });
+      .addMatcher(
+        isRejected(getCustomers, getAllCustomer, getCustomer, createCustomer, updateCustomer, deleteCustomer),
+        (state, action) => {
+          state.loading = false;
+          state.updating = false;
+          state.updateSuccess = false;
+          state.errorMessage = action.error.message;
+        }
+      );
   },
 });
 

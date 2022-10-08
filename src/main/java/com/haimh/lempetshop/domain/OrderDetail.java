@@ -1,7 +1,6 @@
 package com.haimh.lempetshop.domain;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -21,7 +20,7 @@ public class OrderDetail extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_detail_id")
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -35,11 +34,11 @@ public class OrderDetail extends BaseEntity {
     @OneToOne(mappedBy = "orderDetail")
     private Order order;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public OrderDetail setId(long orderDetailId) {
+    public OrderDetail setId(Long orderDetailId) {
         this.id = orderDetailId;
         return this;
     }

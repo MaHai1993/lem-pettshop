@@ -26,9 +26,17 @@ public class OrderItem extends BaseEntity {
 
     private Long quantity;
 
+    /**
+     * Product price at the sell time
+     */
+    private Double productPriceAtSellTime;
+
+    /**
+     * Product price manual input
+     */
     private Double productPrice;
 
-    private Long totalPrice;
+    private Double totalPrice;
 
     private String notes;
 
@@ -68,21 +76,16 @@ public class OrderItem extends BaseEntity {
         return this;
     }
 
-    public OrderItem setProductId(Long productId) {
-        this.productId = productId;
-        return this;
-    }
-
     public OrderItem setQuantity(Long quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public Long getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public OrderItem setTotalPrice(Long totalPrice) {
+    public OrderItem setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
         return this;
     }
@@ -102,6 +105,20 @@ public class OrderItem extends BaseEntity {
 
     public OrderItem setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
+        return this;
+    }
+
+    public OrderItem setProductId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public Double getProductPriceAtSellTime() {
+        return productPriceAtSellTime;
+    }
+
+    public OrderItem setProductPriceAtSellTime(Double productPriceAtSellTime) {
+        this.productPriceAtSellTime = productPriceAtSellTime;
         return this;
     }
 }

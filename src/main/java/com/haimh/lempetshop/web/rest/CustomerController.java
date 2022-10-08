@@ -47,15 +47,21 @@ public class CustomerController {
     @GetMapping(value = "/get-all-customer")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<List<CustomerDTO>> getAllCustomer(Pageable pageable) {
-        Page<CustomerDTO> orders = customerService.getAllProduct(pageable);
+        Page<CustomerDTO> orders = customerService.getAllCustomer(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), orders);
         return new ResponseEntity<>(orders.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/get-all-customer-without-paging")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    public ResponseEntity<List<CustomerDTO>> getAllCustomerWithoutPaging() {
+        return new ResponseEntity<>(customerService.getAllCustomerWithoutPaging(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
-        CustomerDTO order = customerService.createProduct(customerDTO);
+        CustomerDTO order = customerService.createCustomer(customerDTO);
         return ResponseEntity.ok(order);
     }
 
@@ -63,7 +69,7 @@ public class CustomerController {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<CustomerDTO> updateCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
         log.debug("REST request to update Product : {}", customerDTO);
-        CustomerDTO updatedUser = customerService.updateProduct(customerDTO);
+        CustomerDTO updatedUser = customerService.updateCustomer(customerDTO);
 
         return ResponseUtil.wrapOrNotFound(
             Optional.of(updatedUser),
@@ -86,7 +92,7 @@ public class CustomerController {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
         log.debug("REST request to delete CustomerDTO: {}", id);
-        customerService.deleteProduct(id);
+        customerService.deleteCustomer(id);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createAlert(applicationName, "A customer is deleted with identifier " + id, String.valueOf(id)))

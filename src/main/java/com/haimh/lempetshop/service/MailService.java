@@ -51,6 +51,15 @@ public class MailService {
         this.templateEngine = templateEngine;
     }
 
+    /**
+     * Wrapper to send an email
+     *
+     * @param to
+     * @param subject
+     * @param content
+     * @param isMultipart
+     * @param isHtml
+     */
     @Async
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.debug(
@@ -77,6 +86,13 @@ public class MailService {
         }
     }
 
+    /**
+     * Wrapper to send an email by using template
+     *
+     * @param user
+     * @param templateName
+     * @param titleKey
+     */
     @Async
     public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
         if (user.getEmail() == null) {
@@ -93,18 +109,31 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, false, true);
     }
 
+    /**
+     * Send activation email
+     *
+     * @param user
+     */
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/activationEmail", "email.activation.title");
     }
 
+    /**
+     * send creation email
+     * @param user
+     */
     @Async
     public void sendCreationEmail(User user) {
         log.debug("Sending creation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/creationEmail", "email.activation.title");
     }
 
+    /**
+     * Send respet password email
+     * @param user
+     */
     @Async
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());

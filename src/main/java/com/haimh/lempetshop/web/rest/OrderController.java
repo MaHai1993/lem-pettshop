@@ -3,6 +3,7 @@ package com.haimh.lempetshop.web.rest;
 import com.haimh.lempetshop.domain.Order;
 import com.haimh.lempetshop.security.AuthoritiesConstants;
 import com.haimh.lempetshop.service.OrderService;
+import com.haimh.lempetshop.service.dto.CreateOrderDTO;
 import com.haimh.lempetshop.service.dto.OrderDTO;
 import java.util.HashSet;
 import java.util.List;
@@ -56,7 +57,7 @@ public class OrderController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<Order> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<Order> createOrder(@RequestBody CreateOrderDTO orderDTO) throws Exception {
         Order order = orderService.createOrder(orderDTO);
         return ResponseEntity.ok(order);
     }

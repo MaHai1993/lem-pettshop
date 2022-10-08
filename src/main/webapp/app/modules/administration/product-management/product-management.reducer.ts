@@ -9,6 +9,14 @@ const initialState = {
   errorMessage: null,
   products: [] as ReadonlyArray<IProduct>,
   allProducts: [] as ReadonlyArray<IProduct>,
+  listProduct: [
+    {
+      name: '',
+      id: 0,
+      quantity: 0,
+      price: 0,
+    },
+  ],
   // authorities: [] as any[],
   product: defaultValue,
   updating: false,

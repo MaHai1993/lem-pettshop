@@ -28,21 +28,51 @@ public class ProductService {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * Get all Product with pageable
+     *
+     * @param pageable
+     * @return Page<ProductDTO>
+     */
     @Transactional(readOnly = true)
     public Page<ProductDTO> getAllProduct(Pageable pageable) {
         return productRepository.findAll(pageable).map(e -> modelMapper.map(e, ProductDTO.class));
     }
 
+    /**
+     * Get all Product without pageable
+     *
+     * @return Page<ProductDTO>
+     */
     @Transactional(readOnly = true)
     public List<ProductDTO> getAllProductWithoutPaging() {
-        return productRepository.findAll().stream().map(e -> modelMapper.map(e, ProductDTO.class)).collect(Collectors.toList());
+        List<ProductDTO> products = productRepository
+            .findAll()
+            .stream()
+            .map(e -> modelMapper.map(e, ProductDTO.class))
+            .collect(Collectors.toList());
+        ProductDTO defaultProduct = new ProductDTO();
+        defaultProduct.setId(0);
+        defaultProduct.setName("Name");
+        products.add(0, defaultProduct);
+        return products;
     }
 
+    /**
+     * Find product by id
+     *
+     * @return Page<ProductDTO>
+     */
     @Transactional(readOnly = true)
     public Optional<ProductDTO> findOneById(Long id) {
         return productRepository.findById(id).map(e -> modelMapper.map(e, ProductDTO.class));
     }
 
+    /**
+     * Create Product
+     *
+     * @return ProductDTO
+     */
     @Transactional
     public ProductDTO createProduct(ProductDTO productDTO) {
         Product savedProduct = modelMapper.map(productDTO, Product.class);
@@ -55,6 +85,11 @@ public class ProductService {
         return modelMapper.map(savedProduct, ProductDTO.class);
     }
 
+    /**
+     * Update Product
+     *
+     * @return ProductDTO
+     */
     @Transactional
     public ProductDTO updateProduct(ProductDTO productDTO) {
         Product savedProduct = modelMapper.map(productDTO, Product.class);
@@ -65,6 +100,10 @@ public class ProductService {
         return modelMapper.map(savedProduct, ProductDTO.class);
     }
 
+    /**
+     * Delete Product
+     *
+     */
     @Transactional
     public void deleteProduct(Long id) {
         productRepository

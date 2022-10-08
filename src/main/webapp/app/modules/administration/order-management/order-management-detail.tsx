@@ -3,7 +3,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Table } from 'reactstrap';
 import { TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CurrencyFormat } from 'react-currency-format';
+import CurrencyFormat from 'react-currency-format';
 
 import { APP_DATE_FORMAT } from 'app/config/constants';
 

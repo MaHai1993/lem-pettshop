@@ -1,4 +1,4 @@
-package com.haimh.lempetshop.service;
+package com.haimh.lempetshop.service.exception;
 
 public class UsernameAlreadyUsedException extends RuntimeException {
 

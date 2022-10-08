@@ -1,5 +1,6 @@
 package com.haimh.lempetshop.web.rest.errors;
 
+import com.haimh.lempetshop.service.exception.UsernameAlreadyUsedException;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Collection;
@@ -117,7 +118,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
 
     @ExceptionHandler
     public ResponseEntity<Problem> handleEmailAlreadyUsedException(
-        com.haimh.lempetshop.service.EmailAlreadyUsedException ex,
+        com.haimh.lempetshop.service.exception.EmailAlreadyUsedException ex,
         NativeWebRequest request
     ) {
         EmailAlreadyUsedException problem = new EmailAlreadyUsedException();
@@ -129,10 +130,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
     }
 
     @ExceptionHandler
-    public ResponseEntity<Problem> handleUsernameAlreadyUsedException(
-        com.haimh.lempetshop.service.UsernameAlreadyUsedException ex,
-        NativeWebRequest request
-    ) {
+    public ResponseEntity<Problem> handleUsernameAlreadyUsedException(UsernameAlreadyUsedException ex, NativeWebRequest request) {
         LoginAlreadyUsedException problem = new LoginAlreadyUsedException();
         return create(
             problem,
@@ -143,7 +141,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
 
     @ExceptionHandler
     public ResponseEntity<Problem> handleInvalidPasswordException(
-        com.haimh.lempetshop.service.InvalidPasswordException ex,
+        com.haimh.lempetshop.service.exception.InvalidPasswordException ex,
         NativeWebRequest request
     ) {
         return create(new InvalidPasswordException(), request);
