@@ -16,6 +16,7 @@ public class OrderItem extends BaseEntity {
     @Column(name = "order_item_id")
     private long id;
 
+    // Don't need below code to make DB heavy, when we want to use full fill ORM framework feature then uncomment this
     //    @ManyToOne(cascade = CascadeType.ALL)
     ////    @ManyToOne(fetch = FetchType.LAZY)
     //    @JoinColumn(name = "order_detail_id")

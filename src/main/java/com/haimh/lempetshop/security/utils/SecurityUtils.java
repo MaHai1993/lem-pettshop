@@ -1,5 +1,6 @@
-package com.haimh.lempetshop.security;
+package com.haimh.lempetshop.security.utils;
 
+import com.haimh.lempetshop.security.AuthoritiesConstants;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;

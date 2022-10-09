@@ -1,11 +1,17 @@
 package com.haimh.lempetshop.security.jwt;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +39,11 @@ public class TokenProvider {
 
     private final long tokenValidityInMillisecondsForRememberMe;
 
+    /**
+     * Ctor to generate the jwt configuration
+     *
+     * @param jHipsterProperties
+     */
     public TokenProvider(JHipsterProperties jHipsterProperties) {
         byte[] keyBytes;
         String secret = jHipsterProperties.getSecurity().getAuthentication().getJwt().getBase64Secret();
@@ -54,6 +65,13 @@ public class TokenProvider {
             1000 * jHipsterProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSecondsForRememberMe();
     }
 
+    /**
+     * Create jwt for user and add more time if user is ticked on the remember me checkbox
+     *
+     * @param authentication
+     * @param rememberMe
+     * @return jwt token
+     */
     public String createToken(Authentication authentication, boolean rememberMe) {
         String authorities = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
 
@@ -74,6 +92,12 @@ public class TokenProvider {
             .compact();
     }
 
+    /**
+     * Get current user by jwt token
+     *
+     * @param token
+     * @return Authentication object
+     */
     public Authentication getAuthentication(String token) {
         Claims claims = jwtParser.parseClaimsJws(token).getBody();
 
@@ -88,6 +112,12 @@ public class TokenProvider {
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }
 
+    /**
+     * Validate token by parsing claims jws
+     *
+     * @param authToken
+     * @return true | false
+     */
     public boolean validateToken(String authToken) {
         try {
             jwtParser.parseClaimsJws(authToken);

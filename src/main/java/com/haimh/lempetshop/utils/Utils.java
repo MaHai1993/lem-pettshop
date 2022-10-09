@@ -1,7 +1,7 @@
 package com.haimh.lempetshop.utils;
 
 import com.haimh.lempetshop.domain.BaseEntity;
-import com.haimh.lempetshop.security.SecurityUtils;
+import com.haimh.lempetshop.security.utils.SecurityUtils;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Locale;

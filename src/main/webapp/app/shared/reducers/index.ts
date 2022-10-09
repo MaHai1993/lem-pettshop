@@ -13,7 +13,6 @@ import activate from 'app/modules/account/activate/activate.reducer';
 import password from 'app/modules/account/password/password.reducer';
 import settings from 'app/modules/account/settings/settings.reducer';
 import passwordReset from 'app/modules/account/password-reset/password-reset.reducer';
-/* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const rootReducer = {
   authentication,
@@ -28,7 +27,6 @@ const rootReducer = {
   passwordReset,
   password,
   settings,
-  /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 };
 

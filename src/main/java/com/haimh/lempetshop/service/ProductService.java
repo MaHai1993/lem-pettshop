@@ -2,7 +2,7 @@ package com.haimh.lempetshop.service;
 
 import com.haimh.lempetshop.domain.Product;
 import com.haimh.lempetshop.repository.ProductRepository;
-import com.haimh.lempetshop.security.SecurityUtils;
+import com.haimh.lempetshop.security.utils.SecurityUtils;
 import com.haimh.lempetshop.service.dto.ProductDTO;
 import java.util.Date;
 import java.util.List;

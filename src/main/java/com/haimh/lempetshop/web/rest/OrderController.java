@@ -5,7 +5,6 @@ import com.haimh.lempetshop.security.AuthoritiesConstants;
 import com.haimh.lempetshop.service.OrderService;
 import com.haimh.lempetshop.service.dto.CreateOrderDTO;
 import com.haimh.lempetshop.service.dto.OrderDTO;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;

@@ -27,6 +27,11 @@ public class AsyncConfiguration implements AsyncConfigurer {
         this.taskExecutionProperties = taskExecutionProperties;
     }
 
+    /**
+     * Use this excutor for sending email or run liquibase to validate db for period
+     *
+     * @return Executor
+     */
     @Override
     @Bean(name = "taskExecutor")
     public Executor getAsyncExecutor() {

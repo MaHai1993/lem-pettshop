@@ -2,6 +2,7 @@ package com.haimh.lempetshop.security;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.haimh.lempetshop.security.utils.SecurityUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;

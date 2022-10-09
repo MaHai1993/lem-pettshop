@@ -6,7 +6,7 @@ import com.haimh.lempetshop.domain.User;
 import com.haimh.lempetshop.repository.AuthorityRepository;
 import com.haimh.lempetshop.repository.UserRepository;
 import com.haimh.lempetshop.security.AuthoritiesConstants;
-import com.haimh.lempetshop.security.SecurityUtils;
+import com.haimh.lempetshop.security.utils.SecurityUtils;
 import com.haimh.lempetshop.service.dto.AdminUserDTO;
 import com.haimh.lempetshop.service.dto.UserDTO;
 import com.haimh.lempetshop.service.exception.EmailAlreadyUsedException;

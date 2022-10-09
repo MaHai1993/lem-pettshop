@@ -14,11 +14,18 @@ import tech.jhipster.config.JHipsterProperties;
 @Profile({ JHipsterConstants.SPRING_PROFILE_PRODUCTION })
 public class StaticResourcesWebConfiguration implements WebMvcConfigurer {
 
+    /**
+     * add more resources here
+     */
     protected static final String[] RESOURCE_LOCATIONS = new String[] {
         "classpath:/static/",
         "classpath:/static/content/",
         "classpath:/static/i18n/",
     };
+
+    /**
+     * should use wilcard
+     */
     protected static final String[] RESOURCE_PATHS = new String[] {
         "/*.js",
         "/*.css",

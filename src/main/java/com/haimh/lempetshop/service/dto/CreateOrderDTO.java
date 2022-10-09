@@ -2,7 +2,6 @@ package com.haimh.lempetshop.service.dto;
 
 import com.haimh.lempetshop.domain.BaseEntity;
 import java.util.List;
-import java.util.Map;
 
 public class CreateOrderDTO extends BaseEntity {
 

@@ -2,7 +2,7 @@ package com.haimh.lempetshop.web.rest;
 
 import com.haimh.lempetshop.domain.User;
 import com.haimh.lempetshop.repository.UserRepository;
-import com.haimh.lempetshop.security.SecurityUtils;
+import com.haimh.lempetshop.security.utils.SecurityUtils;
 import com.haimh.lempetshop.service.MailService;
 import com.haimh.lempetshop.service.UserService;
 import com.haimh.lempetshop.service.dto.AdminUserDTO;
@@ -179,7 +179,7 @@ public class AccountResource {
         }
         Optional<User> user = userService.completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey());
 
-        if (!user.isPresent()) {
+        if (user.isEmpty()) {
             throw new AccountResourceException("No user was found for this reset key");
         }
     }

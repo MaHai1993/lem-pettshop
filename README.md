@@ -89,8 +89,6 @@ Unit tests are run by [Jest][]. They're located in [src/test/javascript/](src/te
 npm test
 ```
 
-For more information, refer to the [Running tests page][].
-
 ### Code quality
 
 Sonar is used to analyse code quality. You can start a local Sonar server (accessible on http://localhost:9001) with:
@@ -108,8 +106,6 @@ Then, run a Sonar analysis:
 ```
 ./gradlew -Pprod clean check jacocoTestReport sonarqube
 ```
-
-For more information, refer to the [Code quality page][].
 
 ## Using Docker to simplify development (optional)
 
@@ -140,15 +136,8 @@ docker-compose -f src/main/docker/app.yml up -d
 
 For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
 
-[jhipster homepage and latest documentation]: https://www.jhipster.tech
-[jhipster 7.3.0 archive]: https://www.jhipster.tech/documentation-archive/v7.3.0
-[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v7.3.0/development/
-[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v7.3.0/docker-compose
-[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v7.3.0/production/
-[running tests page]: https://www.jhipster.tech/documentation-archive/v7.3.0/running-tests/
-[code quality page]: https://www.jhipster.tech/documentation-archive/v7.3.0/code-quality/
-[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v7.3.0/setting-up-ci/
-[node.js]: https://nodejs.org/
+[using docker and docker-compose]: https://docs.docker.com/compose/gettingstarted/
+[node.js]: https://nodejs.org/F
 [npm]: https://www.npmjs.com/
 [webpack]: https://webpack.github.io/
 [browsersync]: https://www.browsersync.io/

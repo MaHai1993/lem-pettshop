@@ -2,10 +2,9 @@ package com.haimh.lempetshop.service;
 
 import com.haimh.lempetshop.domain.Customer;
 import com.haimh.lempetshop.repository.CustomerRepository;
-import com.haimh.lempetshop.repository.OrderDetailRepository;
 import com.haimh.lempetshop.repository.OrderItemRepository;
 import com.haimh.lempetshop.repository.OrderRepository;
-import com.haimh.lempetshop.security.SecurityUtils;
+import com.haimh.lempetshop.security.utils.SecurityUtils;
 import com.haimh.lempetshop.service.dto.CustomerDTO;
 import com.haimh.lempetshop.utils.Utils;
 import java.util.Date;

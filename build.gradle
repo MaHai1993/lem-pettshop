@@ -91,7 +91,7 @@ test {
     }
     jvmArgs += '-Djava.security.egd=file:/dev/./urandom -Xmx256m'
     // uncomment if the tests reports are not generated
-    // ignoreFailures true
+    ignoreFailures true
     reports.html.enabled = false
 }
 
